@@ -55,7 +55,7 @@ tests/                 Smoke and preprocessing tests
 
 ## Dataset and attribution
 
-[Fashion-MNIST](https://github.com/zalandoresearch/fashion-mnist) was created by Han Xiao, Kashif Rasul, and Roland Vollgraf at Zalando Research. It contains 28 × 28 grayscale product images in ten classes and is provided under the MIT License. The included sample images come from its test split. See [`DATASET_LICENSE.txt`](DATASET_LICENSE.txt) for the dataset license notice.
+[Fashion-MNIST](https://github.com/zalandoresearch/fashion-mnist) was created by Han Xiao, Kashif Rasul, and Roland Vollgraf at Zalando Research. It contains 28 × 28 grayscale product images in ten classes and is provided under the MIT License. The included sample images come from its test split. See [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md) for the dataset license notice.
 
 This is a benchmark and learning project for Fashion-MNIST's ten classes, not a general clothing recognition service. A photograph with a complex background may perform poorly even when the test-set accuracy is high. The displayed model scores have not been calibrated as probabilities of correctness.
 
