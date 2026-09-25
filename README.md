@@ -1,10 +1,10 @@
 # ThreadSight
 
-ThreadSight is a local image-recognition project that compares **classical machine learning** with **deep learning** on the same clothing images. It includes trained model files, measured results, a browser demo, and the full reproducible training pipeline.
+ThreadSight compares **classical machine learning** with **deep learning** on the same clothing images. It includes trained model files, measured results, a [public interactive demo](https://hazimali07.github.io/threadsight-image-recognition/), and the full reproducible training pipeline.
 
-The browser demo accepts a PNG, JPEG, or WebP image and shows the predictions from both models, their top three output scores, and the 28 × 28 grayscale image they actually received. It also includes real sample images from the held-out test set.
+The [live demo](https://hazimali07.github.io/threadsight-image-recognition/) accepts a PNG, JPEG, or WebP image and shows the predictions from both models, their top three output scores, and the 28 × 28 grayscale image they actually received. It also includes real sample images from the held-out test set. In the public version, inference runs in the visitor's browser; uploaded images are not sent to a server.
 
-## Run the demo
+## Run the Python demo locally
 
 Python 3.12 is recommended for the included demo. On macOS or Linux, open Terminal in this folder and run:
 
@@ -17,7 +17,7 @@ python app.py
 
 Open **http://127.0.0.1:8000** in your browser. Press `Ctrl+C` in Terminal to stop it. On Windows, use `py -3.12 -m venv .venv`, `.venv\Scripts\activate`, then the same `pip` and `python app.py` commands.
 
-The model files are already included, so training is not needed to try the demo. Images are processed locally by this app and are not saved. The included weights were trained with PyTorch 2.14 and checked in the demo with PyTorch 2.13; the requirements file pins the tested demo environment.
+The model files are already included, so training is not needed to try the demo. Images are processed locally by this app and are not saved. The included weights were trained with PyTorch 2.14 and checked in the demo with PyTorch 2.13; the requirements file pins the tested demo environment. The public demo uses exported copies of these trained weights. Browser image resizing can differ slightly from the Python version.
 
 ## What the models do
 
@@ -48,6 +48,8 @@ train.py               Download, split, train, evaluate, and save models
 src/dataset.py         Verified Fashion-MNIST loader
 src/model.py           CNN architecture
 static/                Browser interface and 20 held-out sample images
+docs/                  Public browser-only demo and exported model weights
+scripts/               Browser model export script
 models/                Trained classical and CNN weights
 reports/metrics.json   Measured results and confusion matrices
 tests/                 Smoke and preprocessing tests
