@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10151d">
+  <title>ThreadSight — Image recognition lab</title>
+  <link rel="stylesheet" href="./style.css">
+  <script src="./app.js" type="module"></script>
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar" aria-label="Project navigation">
+      <a class="brand" href="#top" aria-label="ThreadSight home">
+        <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 42 42" fill="none"><path d="M8 9h26M8 21h26M8 33h26M14 5v32M28 5v32" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><circle cx="14" cy="21" r="4" fill="#EF9B75"/></svg></span>
+        <span>Thread<span class="brand-accent">Sight</span><small>VISION LAB</small></span>
+      </a>
+      <div class="side-label">WORKSPACE</div>
+      <nav class="nav-links" aria-label="Sections">
+        <a class="active" href="#try-it"><span class="nav-icon">◈</span> Live lab</a>
+        <a href="#benchmarks"><span class="nav-icon">▥</span> Model comparison</a>
+        <a href="#method"><span class="nav-icon">◎</span> How it works</a>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="dataset-mini"><span class="pulse"></span> LIVE DEMO <strong>Fashion-MNIST</strong><span>10 clothing categories</span></div>
+        <p>Images stay in your browser. Predictions run on your device.</p>
+      </div>
+    </aside>
+
+    <main id="top">
+      <div class="topbar"><span class="crumb">PROJECT / COMPUTER VISION</span><span class="top-status"><span class="pulse"></span> MODELS READY</span></div>
+      <div class="content">
+        <section class="hero" aria-labelledby="hero-title">
+          <div class="hero-copy"><div class="eyebrow"><span class="eyebrow-line"></span> TWO APPROACHES. ONE IMAGE.</div>
+            <h1 id="hero-title">See how machines<br><em>read an image.</em></h1>
+            <p>Upload a clothing image or choose a real test sample. Compare a classical machine learning model with a deep learning model, side by side.</p>
+            <a class="hero-link" href="#try-it">Try the live lab <span aria-hidden="true">↗</span></a>
+          </div>
+          <div class="hero-art" aria-hidden="true"><div class="art-grid"></div><div class="art-frame art-frame-one"><span>28 × 28</span></div><div class="art-frame art-frame-two"><div class="art-shirt"><svg viewBox="0 0 120 120" role="img" aria-label=""><path d="M42 17 28 23 15 45 30 54 36 44 36 101 84 101 84 44 90 54 105 45 92 23 78 17 70 25c-5 7-15 7-20 0Z" fill="currentColor"/><path d="M49 18c4 10 18 14 25 0" fill="none" stroke="#293540" stroke-width="4"/></svg></div><div class="art-label">INPUT IMAGE <span>● ● ●</span></div></div><div class="art-tag">PIXELS → PREDICTION</div></div>
+        </section>
+
+        <div class="stat-row" aria-label="Project facts"><div class="stat"><strong>02</strong><span>trained approaches</span></div><div class="stat"><strong>10</strong><span>clothing categories</span></div><div class="stat"><strong id="test-count">10k</strong><span>held-out test images</span></div><div class="stat"><strong>100%</strong><span>browser inference</span></div></div>
+
+        <section id="try-it" class="section lab-section" aria-labelledby="lab-title">
+          <div class="section-heading"><div><div class="section-kicker">01 / EXPERIMENT</div><h2 id="lab-title">The live lab</h2><p>Use a sample to see an in-domain result, or try your own image.</p></div><span class="section-number">01</span></div>
+          <div class="lab-grid">
+            <div class="panel upload-panel">
+              <div class="panel-head"><span class="panel-icon">↥</span><span>YOUR INPUT</span><span class="panel-step">STEP 01</span></div>
+              <label class="dropzone" id="dropzone" for="image-input" tabindex="0"><input type="file" id="image-input" accept="image/png,image/jpeg,image/webp" hidden><span class="upload-symbol">＋</span><strong>Drop an image here</strong><span>or <u>browse your files</u></span><small>PNG, JPEG, or WebP · max 3 MB</small></label>
+              <div class="upload-hint"><span>✦</span><p>Best results come from a single clothing item centered on a plain background.</p></div>
+            </div>
+            <div class="panel result-panel" aria-live="polite">
+              <div class="panel-head"><span class="panel-icon coral">◉</span><span>MODEL READOUT</span><span class="panel-step">STEP 02</span></div>
+              <div id="result-empty" class="result-empty"><div class="scan-placeholder"><span class="scan-line"></span><span class="scan-cross">＋</span></div><strong>Awaiting an image</strong><p>Your comparison will appear here.</p></div>
+              <div id="result-content" class="result-content" hidden>
+                <div class="processed-wrap"><img id="processed-image" alt="28 by 28 grayscale image used by both models"><div><span class="tiny-label">MODEL INPUT</span><strong>What both models saw</strong><small>Grayscale, 28 × 28 pixels</small></div></div>
+                <div id="expected" class="expected" hidden></div>
+                <div id="prediction-cards" class="prediction-cards"></div>
+                <p class="score-note">Scores are model outputs, not calibrated certainty.</p>
+              </div>
+              <p id="status" class="status" role="status"></p>
+            </div>
+          </div>
+          <div class="sample-area"><div class="sample-title"><div><span class="sample-star">✳</span><strong>Or pick a test image</strong><span>Real examples from the held-out set</span></div><span>SELECT TO ANALYZE →</span></div><div id="samples" class="samples" aria-label="Test image samples"></div></div>
+        </section>
+
+        <section id="benchmarks" class="section benchmark-section" aria-labelledby="benchmark-title"><div class="section-heading"><div><div class="section-kicker">02 / EVALUATION</div><h2 id="benchmark-title">A fair comparison</h2><p>Both models use the same training images and the same official test set.</p></div><span class="section-number">02</span></div>
+          <div class="benchmark-grid"><div class="benchmark-card"><div class="benchmark-icon ml">ML</div><span class="benchmark-type">CLASSICAL MACHINE LEARNING</span><h3>Pixel classifier</h3><p>Standardized pixels fed to a logistic classifier trained with stochastic gradient descent.</p><div class="benchmark-metric"><strong id="ml-accuracy">—</strong><span>test accuracy</span></div><div class="metric-track"><span id="ml-bar"></span></div><div class="benchmark-foot"><span>MACRO F1</span><strong id="ml-f1">—</strong></div></div>
+            <div class="benchmark-card featured"><div class="benchmark-icon dl">DL</div><span class="benchmark-type">DEEP LEARNING</span><h3>Convolutional network</h3><p>Two convolution blocks learn spatial patterns before making a clothing prediction.</p><div class="benchmark-metric"><strong id="dl-accuracy">—</strong><span>test accuracy</span></div><div class="metric-track"><span id="dl-bar"></span></div><div class="benchmark-foot"><span>MACRO F1</span><strong id="dl-f1">—</strong></div></div></div>
+          <div class="eval-note"><span>◎</span><p><strong>Evaluation method</strong> · Results come from the official 10,000-image test split, separate from fitting and checkpoint selection. Full metrics and confusion matrices are included in the project files.</p></div>
+        </section>
+
+        <section id="method" class="section method-section" aria-labelledby="method-title"><div class="section-heading"><div><div class="section-kicker">03 / BEHIND THE SCENES</div><h2 id="method-title">From pixels to patterns</h2><p>A simple view of the pipeline powering the lab.</p></div><span class="section-number">03</span></div><div class="method-grid"><article><span>01</span><h3>Prepare</h3><p>Images become 28 × 28 grayscale pixels. Uploaded images are resized and centered.</p></article><article><span>02</span><h3>Learn</h3><p>The ML model reads pixels directly; the CNN learns local shapes and features.</p></article><article><span>03</span><h3>Compare</h3><p>Both models predict one of ten clothing classes and show their three highest scores.</p></article></div><div class="limitation"><span>✳</span><p><strong>Scope matters.</strong> This is a benchmark learning project. It recognizes only the ten Fashion-MNIST classes. Real-world photos can differ greatly from the training images, so treat their predictions as exploratory.</p></div></section>
+        <footer><span>THREADSIGHT / COMPUTER VISION LAB</span><span>Models run in your browser</span></footer>
+      </div>
+    </main>
+  </div>
+</body>
+</html>
