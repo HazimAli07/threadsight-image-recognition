@@ -4,6 +4,17 @@ ThreadSight compares **classical machine learning** with **deep learning** on th
 
 The [live demo](https://hazimali07.github.io/threadsight-image-recognition/) accepts a PNG, JPEG, or WebP image and shows the predictions from both models, their top three output scores, and the 28 × 28 grayscale image they actually received. It also includes real sample images from the held-out test set. In the public version, inference runs in the visitor's browser; uploaded images are not sent to a server.
 
+## Results and contribution
+
+| Model | Official test accuracy |
+|---|---:|
+| scikit-learn logistic SGD baseline | 82.59% |
+| PyTorch convolutional neural network | 90.88% |
+
+Both results use the same official 10,000-image Fashion-MNIST test set. Checkpoint selection uses the separate validation set. Full per-class metrics and software details are in [reports/metrics.json](reports/metrics.json); interpretation and limits are in [MODEL_CARD.md](MODEL_CARD.md).
+
+The project includes dataset verification, shared preprocessing, baseline/CNN training, evaluation reports, automated tests and a browser-only inference demo. Project ownership and implementation assistance are recorded in the attribution section below.
+
 ## Run the Python demo locally
 
 Python 3.12 is recommended for the included demo. On macOS or Linux, open Terminal in this folder and run:
